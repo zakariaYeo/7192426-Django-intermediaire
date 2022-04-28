@@ -17,8 +17,8 @@ class Photo(models.Model):
         image.save(self.image.path)
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
         self.resize_image()
+        return super().save(*args, **kwargs)
 
 
 class Blog(models.Model):
@@ -35,8 +35,8 @@ class Blog(models.Model):
         return len(self.content.split(' '))
 
     def save(self, *args, **kwargs):
+        return super().save(*args, **kwargs)
         self.word_count = self._get_word_count()
-        super().save(*args, **kwargs)
 
 
 class BlogContributor(models.Model):
